@@ -6,7 +6,11 @@ func solution(_ numbers: [Int]) -> Int? {
         return nil
     }
     // 0부터 9까지의 총합은 45
-    let sumOfMissingDigits = 45 - numbers.reduce(0, +)
+    // let sumOfMissingDigits = 45 - numbers.reduce(0, +)
+    // return sumOfMissingDigits
+    
+    var missingDigits = (0...9).filter { !numbers.contains($0) }
+    let sumOfMissingDigits = missingDigits.reduce(0, +)
     return sumOfMissingDigits
     
     // var missingDigits = Set([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]).subtracting(numbers)
