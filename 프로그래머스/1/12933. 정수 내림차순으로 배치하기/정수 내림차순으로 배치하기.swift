@@ -4,9 +4,9 @@ func solution(_ n: Int64) -> Int64? {
         return nil
     }
 
-    let digits = String(n).map {Int(String($0))!}
-    let sortedDigits = digits.sorted(by: >)
-    let result = Int64(sortedDigits.map { String($0) }.joined())
+    let sortedString = String(n)
+        .sorted(by: >)
+        .reduce("") { $0 + String($1) }
 
-    return result
+    return Int64(sortedString)
 }
