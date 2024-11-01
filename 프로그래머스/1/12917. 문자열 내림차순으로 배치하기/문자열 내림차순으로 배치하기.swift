@@ -42,5 +42,5 @@ func solution(_ str: String) -> String {
     return ""
     }
     
-    return String(str.sorted { $0 > $1 })
+    return String(str.sorted(by: >))
 }
