@@ -17,6 +17,7 @@ func solution(_ str: String) -> String {
     */
     
     // Algorithm 2
+    // 오답: .isLetter 는 영어뿐만 아니라 한글, 그리스어, 키릴 문자 등 문자로 분류되는 모든 문자에 대해 true를 반환한다.
     /*
     guard !str.isEmpty && str.allSatisfy({ $0.isLetter }) else {
         print("입력값은 길이 1 이상인 문자열이고, 영문 대소문자로만 구성되어야 합니다.")
@@ -37,7 +38,9 @@ func solution(_ str: String) -> String {
     // Algorithm 3
     // sorted의 문자열 정렬은 유니코드 값을 기준으로 정렬한다.
     // a ~ z : 97 ~ 122, A ~ Z : 65 ~ 90.
-    guard !str.isEmpty && str.allSatisfy({ $0.isLetter }) else {
+    let validCharacters = Set("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+    
+    guard !str.isEmpty && str.allSatisfy({ validCharacters.contains($0) }) else {
     print("입력값은 길이 1 이상인 문자열이고, 영문 대소문자로만 구성되어야 합니다.")
     return ""
     }
