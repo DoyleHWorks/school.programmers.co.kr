@@ -16,7 +16,8 @@ func solution(_ str: String) -> String {
     return sortedString
     */
     
-    //Algorithm 2
+    // Algorithm 2
+    /*
     guard !str.isEmpty && str.allSatisfy({ $0.isLetter }) else {
         print("입력값은 길이 1 이상인 문자열이고, 영문 대소문자로만 구성되어야 합니다.")
         return ""
@@ -31,4 +32,15 @@ func solution(_ str: String) -> String {
     }
     var sortedString = String(lowercases) + String(uppercases)
     return sortedString
+    */
+    
+    // Algorithm 3
+    // sorted의 문자열 정렬은 유니코드 값을 기준으로 정렬한다.
+    // a ~ z : 97 ~ 122, A ~ Z : 65 ~ 90.
+    guard !str.isEmpty && str.allSatisfy({ $0.isLetter }) else {
+    print("입력값은 길이 1 이상인 문자열이고, 영문 대소문자로만 구성되어야 합니다.")
+    return ""
+    }
+    
+    return String(str.sorted { $0 > $1 })
 }
