@@ -7,28 +7,25 @@ func solution(_ numbers: [Int]) -> Int {
     }
     
     var possibleCaseCount = 0
-    var combination = [Int](repeating: 0, count: 3) // 중복된 배열 생성 방지
-
-    func recursive(_ depth: Int, _ start: Int) {
-        if depth == 3 { // 종료 조건
-            if combination.reduce(0, +) == 0 {
-                possibleCaseCount += 1
+    
+    for indexA in numbers.startIndex...numbers.endIndex {
+        if indexA + 3 <= numbers.count {
+            let numberA = numbers[indexA]
+            for indexB in (indexA + 1)...numbers.endIndex {
+                if indexB + 2 <= numbers.count {
+                    let numberB = numbers[indexB]
+                    for indexC in (indexB + 1)...numbers.endIndex {
+                        if indexC + 1 <= numbers.count {
+                            let numberC = numbers[indexC]
+                            if numberA + numberB + numberC == 0 {
+                                possibleCaseCount += 1
+                            }
+                        }
+                    }
+                }
             }
-            return
-        }
-        
-        // depth 1에서 남은 요소가 충분하지 않으면 건너뜀
-        if depth == 1 && start >= numbers.count - 1 {
-        	return 
-        }
-        
-        for index in start..<numbers.count { // 재귀 단계
-            combination[depth] = numbers[index]
-            recursive(depth + 1, index + 1)
         }
     }
-    
-    recursive(0, 0)
     
     return possibleCaseCount
 }
