@@ -8,8 +8,7 @@ func solution(_ clothes: [[String]]) -> Int {
     }
 
     let combinationCount = clothesCategorized
-        .map({ $0.value })
-        .map({ $0 + 1 })
+        .map({ $0.value + 1 })
         .reduce(1, *)
     
     return combinationCount - 1
