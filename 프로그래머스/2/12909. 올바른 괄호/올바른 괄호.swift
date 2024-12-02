@@ -6,16 +6,15 @@ func solution(_ s: String) -> Bool
         return false
     }
     
-    var bracketMatchingCount = 0
+    var leftBracketCount = 0, rightBracketCount = 0
     
     for char in s {
-        guard bracketMatchingCount >= 0 else { return false }
         if char == "(" {
-            bracketMatchingCount += 1
+            leftBracketCount += 1
         } else if char == ")" {
-            bracketMatchingCount += -1
+            rightBracketCount += 1
         }
     }
 
-    return bracketMatchingCount == 0
+    return leftBracketCount == rightBracketCount
 }
