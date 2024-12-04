@@ -2,19 +2,18 @@ import Foundation
 
 func solution(_ s: String) -> Bool
 {
-    guard s.first == "(" && s.last == ")" else {
-        return false
-    }
+    guard s.first == "(" && s.last == ")" else { return false } // Early Exit
     
-    var leftBracketCount = 0, rightBracketCount = 0
-    
+    var stack: [Character] = []
+    stack.reserveCapacity(s.count)
+
     for char in s {
-        if char == "(" {
-            leftBracketCount += 1
-        } else if char == ")" {
-            rightBracketCount += 1
+        if char == ")" && stack.last == "(" {
+            stack.removeLast()
+        } else {
+            stack.append(char)
         }
     }
-
-    return leftBracketCount == rightBracketCount
+    
+    return stack.isEmpty
 }
